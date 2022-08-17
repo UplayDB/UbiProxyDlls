@@ -1,18 +1,14 @@
 #include "pch.h"
-#include "upc_r2.h"
-#include "utils.h"
-#include "utils.cpp"
-#include <array>
-#include <cstddef>
-#include <cstring>
+#include "uplay_r2.h"
+
 using namespace std;
 
-using namespace UPCR2;
+using namespace uplay_r2;
 
 #ifdef _WIN64
-constexpr auto ORIG_DLL = L"upc_r264_o.dll";
+constexpr auto ORIG_DLL = L"uplay_r264_o.dll";
 #else
-constexpr auto ORIG_DLL = L"upc_r2_o.dll";
+constexpr auto ORIG_DLL = L"uplay_r2_o.dll";
 #endif
 
 #define GET_PROXY_FUNC(FUNC) \
@@ -20,7 +16,7 @@ constexpr auto ORIG_DLL = L"upc_r2_o.dll";
 
 
 HMODULE originalDLL = nullptr;
-void UPCR2::init(HMODULE hModule)
+void uplay_r2::init(HMODULE hModule)
 {
 	originalDLL = LoadLibrary(ORIG_DLL);
 	if (originalDLL)
@@ -34,7 +30,7 @@ void UPCR2::init(HMODULE hModule)
 	}
 }
 
-void UPCR2::shutdown(HMODULE hModule)
+void uplay_r2::shutdown(HMODULE hModule)
 {
 	FreeLibrary(originalDLL);
 	PRINT_DEBUG("Shotdown!");

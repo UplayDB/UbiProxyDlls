@@ -11,8 +11,9 @@
 #include <filesystem>
 #include <string>
 #include <minwindef.h>
-
-using FunctionAddress = uint64_t;
+#include <array>
+#include <cstddef>
+#include <cstring>
 
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 // Windows Header Files
