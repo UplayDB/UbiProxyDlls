@@ -266,6 +266,15 @@ EXPORT bool MgOrbitdllSavegameWriterSetName(SavegameWriter* writer, unsigned sho
 	PRINT_DEBUG("Returned: %b\n", rsp);
 	return rsp;
 }
+
+EXPORT unsigned int MgOrbitdllGetRequestUniqueId(OrbitSession* Session)
+{
+	PRINT_DEBUG("%s %p\n", __FUNCTION__, Session);
+	GET_PROXY_FUNC(MgOrbitdllGetRequestUniqueId);
+	const unsigned int rsp = proxyFunc(Session);
+	PRINT_DEBUG("Returned: %u\n", rsp);
+	return rsp;
+}
 #pragma endregion
 
 #pragma region OrbitSession
@@ -280,6 +289,7 @@ inline OrbitSession::~OrbitSession()
 }
 void OrbitSession::StartProcess(OrbitSession* Session, unsigned short* a1, unsigned short* a2, unsigned short* a3)
 {
+	GET_PROXY_FUNC(StartProcess);
 	MgOrbitdllStartProcess(Session,a1,a2,a3);
 }
 bool OrbitSession::StartLauncher(OrbitSession* Session, unsigned int a1, unsigned int a2, char const* a3, char const* a4)
@@ -316,7 +326,7 @@ void OrbitSession::Update(OrbitSession* Session)
 }
 bool OrbitSession::CheckUpdate(OrbitSession* Session)
 {
-	return MgOrbitdllCheckUpdate(Session);;
+	return MgOrbitdllCheckUpdate(Session);
 }
 unsigned short* OrbitSession::GetLocText(OrbitSession* Session, const unsigned short* a1, const char* a2)
 {
